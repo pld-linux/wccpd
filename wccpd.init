@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# wccpd		Startup script for the WCCP Server Daemon
+#
+# chkconfig:	2345 85 15
+# description:	WCCP is the Web Cache Coordination Protocol
+# processname:	wccpd
+#
+# pidfile:	/var/run/wccpd.pid
+# config:	/etc/sysconfig/wccpd
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if is_no "${NETWORKING}"; then
+	msg_Network_Down arpd
+	exit 1
+fi
+
+# Source additional OPTIONS if we have them.
+if [ -f /etc/sysconfig/wccpd ] ; then
+        . /etc/sysconfig/wccpd
+fi
+
+
+# See how we were called.
+case "$1" in
+  start)
+  	# Start daemons.
+	if [ ! -f /var/lock/subsys/wccpd ]; then
+		msg_starting wccpd
+		daemon wccpd $WCCPD_OPTS
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/wccpd
+	else
+		msg_Already_Running wccpd
+	fi
+	;;
+
+  stop)
+  	# Stop daemons.
+	if [ -f /var/lock/subsys/wccpd ]; then
+		msg_stopping wccpd
+		killproc wccpd
+		rm -f /var/lock/subsys/wccpd >/dev/null 2>&1
+	else
+		msg_Not_Running wccpd
+		exit 1
+	fi
+	;;
+
+  restart)
+  	$0 stop
+	echo "Waiting 5 seconds..."
+	sleep 5
+	$0 start
+	;;
+
+  status)
+	status wccpd
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|status}"
+	exit 1
+esac
+
+exit 0
