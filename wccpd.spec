@@ -84,5 +84,5 @@ fi
 %attr(754,root,root) %{_libdir}/wccpd/*cache
 %attr(754,root,root) %{_libdir}/wccpd/*wccp
 %attr(754,root,root) /etc/rc.d/init.d/wccpd
-%attr(644,root,root) /etc/sysconfig/wccpd
+%attr(644,root,root) %config(noreplace) /etc/sysconfig/wccpd
 %attr(644,root,root) %{_mandir}/man8/*.8*
