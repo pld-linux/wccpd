@@ -37,7 +37,7 @@ momencie.
 rm -f missing support/missing
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure
 %{__make}
 
