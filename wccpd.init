@@ -30,7 +30,7 @@ if [ -f /etc/sysconfig/wccpd ] ; then
 	. /etc/sysconfig/wccpd
 fi
 
-
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -42,45 +42,33 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/wccpd
 	else
 		msg_already_running wccpd
-		exit 1
 	fi
 	;;
-
   stop)
 	if [ -f /var/lock/subsys/wccpd ]; then
 		# Stop daemons.
 		msg_stopping wccpd
 		killproc wccpd
-		RETVAL=$?
 		rm -f /var/lock/subsys/wccpd >/dev/null 2>&1
 	else
 		msg_not_running wccpd
-		exit 1
 	fi
 	;;
-
-  restart|reload)
+  restart|force-reload)
   	$0 stop
 	nls -n "Waiting %s seconds..." 5
 	sleep 5
 	nls "done."
 	$0 start
-	;;
-  force-reload)
-	$0 stop
-	RETVAL=$?
-	nls -n "Waiting %s seconds..." 5
-	sleep 5
-	nls "done."
-	[ $RETVAL -eq 0 ] && $0 start
-	RETVAL=$?
+	exit $?
 	;;
   status)
 	status wccpd
+	exit $?
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|reload|status}"
-	exit 1
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
 esac
 
 exit $RETVAL
