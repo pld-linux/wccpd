@@ -76,7 +76,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README doc/*.txt doc/html/*
+%doc AUTHORS ChangeLog NEWS README INSTALL.Linux doc/*.txt doc/html/*
 %attr(754,root,root) %{_sbindir}/*
 %dir %{_libdir}/wccpd
 %attr(754,root,root) %{_libdir}/wccpd/*cache
