@@ -53,8 +53,6 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wccpd
 install contrib/linux-ipvs/scripts/*cache $RPM_BUILD_ROOT%{_libdir}/wccpd/
 install contrib/linux-ipvs/scripts/*wccp $RPM_BUILD_ROOT%{_libdir}/wccpd/
 
-gzip -9nf AUTHORS ChangeLog NEWS README doc/*.txt
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -76,7 +74,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz doc/*.gz doc/html/*
+%doc AUTHORS ChangeLog NEWS README doc/*.txt doc/html/*
 %attr(754,root,root) %{_sbindir}/*
 %dir %{_libdir}/wccpd/
 %attr(754,root,root) %{_libdir}/wccpd/*cache
