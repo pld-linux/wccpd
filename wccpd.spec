@@ -12,9 +12,9 @@ Source2:	%{name}.sysconfig
 URL:		http://wccpd.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-Prereq:		/sbin/chkconfig
-Prereq:		rc-scripts >= 0.2.0
-Prereq:		fileutils
+PreReq:		/sbin/chkconfig
+PreReq:		fileutils
+Requires(post,preun):	rc-scripts >= 0.2.0
 Requires:	bc
 Requires:	iproute2
 Requires:	ipvsadm
@@ -47,12 +47,13 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig} \
 	$RPM_BUILD_ROOT%{_libdir}/wccpd
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/wccpd
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/wccpd
-install contrib/linux-ipvs/scripts/*cache $RPM_BUILD_ROOT%{_libdir}/wccpd/
-install contrib/linux-ipvs/scripts/*wccp $RPM_BUILD_ROOT%{_libdir}/wccpd/
+install contrib/linux-ipvs/scripts/*cache $RPM_BUILD_ROOT%{_libdir}/wccpd
+install contrib/linux-ipvs/scripts/*wccp $RPM_BUILD_ROOT%{_libdir}/wccpd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,9 +78,9 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README doc/*.txt doc/html/*
 %attr(754,root,root) %{_sbindir}/*
-%dir %{_libdir}/wccpd/
+%dir %{_libdir}/wccpd
 %attr(754,root,root) %{_libdir}/wccpd/*cache
 %attr(754,root,root) %{_libdir}/wccpd/*wccp
 %attr(754,root,root) /etc/rc.d/init.d/wccpd
-%attr(644,root,root) %config(noreplace) /etc/sysconfig/wccpd
-%attr(644,root,root) %{_mandir}/man8/*.8*
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/wccpd
+%{_mandir}/man8/*.8*
