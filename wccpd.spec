@@ -10,6 +10,7 @@ Group(pl):	Serwery
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/wccpd/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
+Patch0:		%{name}-proto.patch
 URL:		http://wccpd.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,6 +34,7 @@ momencie.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing support/missing
