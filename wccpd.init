@@ -16,14 +16,18 @@
 . /etc/sysconfig/network
 
 # Check that networking is up.
-if is_no "${NETWORKING}"; then
-	msg_network_down arpd
-	exit 1
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down arpd
+		exit 1
+	fi
+else
+	exit 0
 fi
 
 # Source additional OPTIONS if we have them.
 if [ -f /etc/sysconfig/wccpd ] ; then
-        . /etc/sysconfig/wccpd
+	. /etc/sysconfig/wccpd
 fi
 
 
@@ -38,14 +42,16 @@ case "$1" in
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/wccpd
 	else
 		msg_already_running wccpd
+		exit 1
 	fi
 	;;
 
   stop)
-  	# Stop daemons.
 	if [ -f /var/lock/subsys/wccpd ]; then
+		# Stop daemons.
 		msg_stopping wccpd
 		killproc wccpd
+		RETVAL=$?
 		rm -f /var/lock/subsys/wccpd >/dev/null 2>&1
 	else
 		msg_not_running wccpd
@@ -53,20 +59,28 @@ case "$1" in
 	fi
 	;;
 
-  restart)
+  restart|reload)
   	$0 stop
-	echo -n "Waiting 5 seconds..."
+	nls -n "Waiting %s seconds..." 5
 	sleep 5
-	echo "done"
+	nls "done."
 	$0 start
 	;;
-
+  force-reload)
+	$0 stop
+	RETVAL=$?
+	nls -n "Waiting %s seconds..." 5
+	sleep 5
+	nls "done."
+	[ $RETVAL -eq 0 ] && $0 start
+	RETVAL=$?
+	;;
   status)
 	status wccpd
 	;;
   *)
-	echo $"Usage: $0 {start|stop|restart|status}"
+	msg_usage "$0 {start|stop|restart|reload|status}"
 	exit 1
 esac
 
-exit 0
+exit $RETVAL
