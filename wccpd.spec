@@ -1,4 +1,5 @@
 Summary:	A WCCP Server Daemon
+Summary(pl):	Serwer WCCP
 Name:		wccpd
 Version:	0.1
 Release:	1
@@ -6,7 +7,7 @@ License:	GPL v2
 Group:		Daemons
 Group(de):	Server
 Group(pl):	Serwery
-Source0:	http://prdownloads.sourceforge.net/wccpd/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/wccpd/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://wccpd.sourceforge.net/
@@ -27,7 +28,7 @@ transparent redirection based on reachability.
 %description -l pl
 WCCP (Web Cache Coordination Protocol) dostarcza metodê do
 koordynowania farm Web Cache'ów z centralnego routera. Pozwala to na
-przezroczyste przekirowania oparte na osi±galno¶ci hosta w danym
+przezroczyste przekierowania oparte na osi±galno¶ci hosta w danym
 momencie.
 
 %prep
@@ -73,7 +74,6 @@ if [ "$1" = "0" ]; then
 	fi
 	/sbin/chkconfig --del wccpd
 fi
-
 
 %files
 %defattr(644,root,root,755)
