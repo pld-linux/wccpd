@@ -2,7 +2,7 @@ Summary:	A WCCP Server Daemon
 Summary(pl):	Serwer WCCP
 Name:		wccpd
 Version:	0.2
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Daemons
 Group(de):	Server
@@ -16,6 +16,7 @@ BuildRequires:	automake
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
 Prereq:		fileutils
+Requires:	bc
 Requires:	iproute2
 Requires:	ipvsadm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
