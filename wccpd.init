@@ -26,7 +26,7 @@ else
 fi
 
 # Source additional OPTIONS if we have them.
-if [ -f /etc/sysconfig/wccpd ] ; then
+if [ -f /etc/sysconfig/wccpd ]; then
 	. /etc/sysconfig/wccpd
 fi
 
