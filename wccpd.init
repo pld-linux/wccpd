@@ -55,8 +55,9 @@ case "$1" in
 
   restart)
   	$0 stop
-	echo "Waiting 5 seconds..."
+	echo -n "Waiting 5 seconds..."
 	sleep 5
+	echo "done"
 	$0 start
 	;;
 
