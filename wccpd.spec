@@ -1,8 +1,8 @@
 Summary:	A WCCP Server Daemon
 Summary(pl):	Serwer WCCP
 Name:		wccpd
-Version:	0.1
-Release:	1
+Version:	0.2
+Release:	2
 License:	GPL v2
 Group:		Daemons
 Group(de):	Server
@@ -16,6 +16,7 @@ BuildRequires:	automake
 Prereq:		/sbin/chkconfig
 Prereq:		rc-scripts >= 0.2.0
 Prereq:		fileutils
+Requires:	bc
 Requires:	iproute2
 Requires:	ipvsadm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,5 +84,5 @@ fi
 %attr(754,root,root) %{_libdir}/wccpd/*cache
 %attr(754,root,root) %{_libdir}/wccpd/*wccp
 %attr(754,root,root) /etc/rc.d/init.d/wccpd
-%attr(644,root,root) /etc/sysconfig/wccpd
+%attr(644,root,root) %config(noreplace) /etc/sysconfig/wccpd
 %attr(644,root,root) %{_mandir}/man8/*.8*
