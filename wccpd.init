@@ -17,7 +17,7 @@
 
 # Check that networking is up.
 if is_no "${NETWORKING}"; then
-	msg_Network_Down arpd
+	msg_network_down arpd
 	exit 1
 fi
 
@@ -37,7 +37,7 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/wccpd
 	else
-		msg_Already_Running wccpd
+		msg_already_running wccpd
 	fi
 	;;
 
@@ -48,7 +48,7 @@ case "$1" in
 		killproc wccpd
 		rm -f /var/lock/subsys/wccpd >/dev/null 2>&1
 	else
-		msg_Not_Running wccpd
+		msg_not_running wccpd
 		exit 1
 	fi
 	;;
