@@ -35,7 +35,7 @@ momencie.
 
 %build
 rm -f missing support/missing
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure
