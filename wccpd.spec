@@ -6,6 +6,7 @@ Release:	2
 License:	GPL v2
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/wccpd/%{name}-%{version}.tar.gz
+# Source0-md5:	5f15c274de61dfb88e0dbfc1ccbe6b67
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://wccpd.sourceforge.net/
