@@ -5,8 +5,6 @@ Version:	0.2
 Release:	2
 License:	GPL v2
 Group:		Daemons
-Group(de):	Server
-Group(pl):	Serwery
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/wccpd/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
