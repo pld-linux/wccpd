@@ -12,10 +12,10 @@ Source2:	%{name}.sysconfig
 URL:		http://wccpd.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-PreReq:		/sbin/chkconfig
-PreReq:		fileutils
 Requires(post,preun):	rc-scripts >= 0.2.0
+Requires:	/sbin/chkconfig
 Requires:	bc
+Requires:	fileutils
 Requires:	iproute2
 Requires:	ipvsadm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -82,5 +82,5 @@ fi
 %attr(754,root,root) %{_libdir}/wccpd/*cache
 %attr(754,root,root) %{_libdir}/wccpd/*wccp
 %attr(754,root,root) /etc/rc.d/init.d/wccpd
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/wccpd
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/wccpd
 %{_mandir}/man8/*.8*
