@@ -12,6 +12,7 @@ Source2:	%{name}.sysconfig
 URL:		http://wccpd.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	rc-scripts >= 0.2.0
 Requires:	/sbin/chkconfig
 Requires:	bc
@@ -60,17 +61,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add wccpd
-if [ -f /var/lock/subsys/wccpd ]; then
-	/etc/rc.d/init.d/wccpd restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/wccpd start\" to start wccpd daemon."
-fi
+%service wccpd restart "wccpd daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/wccpd ]; then
-		/etc/rc.d/init.d/wccpd stop 1>&2
-	fi
+	%service wccpd stop
 	/sbin/chkconfig --del wccpd
 fi
 
