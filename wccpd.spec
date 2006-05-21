@@ -2,7 +2,7 @@ Summary:	A WCCP Server Daemon
 Summary(pl):	Serwer WCCP
 Name:		wccpd
 Version:	0.2
-Release:	3
+Release:	4
 License:	GPL v2
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/wccpd/%{name}-%{version}.tar.gz
