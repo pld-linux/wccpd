@@ -1,5 +1,5 @@
 Summary:	A WCCP Server Daemon
-Summary(pl.UTF-8):   Serwer WCCP
+Summary(pl.UTF-8):	Serwer WCCP
 Name:		wccpd
 Version:	0.2
 Release:	4
