@@ -1,5 +1,5 @@
 Summary:	A WCCP Server Daemon
-Summary(pl):	Serwer WCCP
+Summary(pl.UTF-8):   Serwer WCCP
 Name:		wccpd
 Version:	0.2
 Release:	4
@@ -26,10 +26,10 @@ The WCCP (Web Cache Coordination Protocol) provides a method to
 coordinate a farm of Web Caches from a central router. It allows
 transparent redirection based on reachability.
 
-%description -l pl
-WCCP (Web Cache Coordination Protocol) dostarcza metodê do
-koordynowania farm Web Cache'ów z centralnego routera. Pozwala to na
-przezroczyste przekierowania oparte na osi±galno¶ci hosta w danym
+%description -l pl.UTF-8
+WCCP (Web Cache Coordination Protocol) dostarcza metodÄ™ do
+koordynowania farm Web Cache'Ã³w z centralnego routera. Pozwala to na
+przezroczyste przekierowania oparte na osiÄ…galnoÅ›ci hosta w danym
 momencie.
 
 %prep
